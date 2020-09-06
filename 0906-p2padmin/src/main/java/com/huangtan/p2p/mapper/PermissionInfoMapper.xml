@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huangtan.p2p.mapper.PermissionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.huangtan.p2p.model.PermissionInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="sort" jdbcType="DOUBLE" property="sort" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <collection property="permissionInfoList"
+                ofType="com.huangtan.p2p.model.PermissionInfo"
+                select="selectPermissionInfoByUserId"
+                column="{userId=user_id,parentid = id}">
+    </collection>
+  </resultMap>
+  <select id="selectPermissionInfoByUserId" resultMap="BaseResultMap">
+    select id,name,type,url,user_id from v_permission_role_user
+    where user_id = #{userId} and type = 'menu' and parentid = #{parentid};
+  </select>
+</mapper>
