@@ -1,6 +1,8 @@
 package com.huangtan.p2p.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class UserInfo {
     private Integer id;
@@ -16,6 +18,16 @@ public class UserInfo {
     private Date lastlogintime;
 
     private Integer staffid;
+
+    private List<PermissionInfo> permissionInfoList = new ArrayList<>();
+
+    public List<PermissionInfo> getPermissionInfoList() {
+        return permissionInfoList;
+    }
+
+    public void setPermissionInfoList(List<PermissionInfo> permissionInfoList) {
+        this.permissionInfoList = permissionInfoList;
+    }
 
     public Integer getId() {
         return id;
