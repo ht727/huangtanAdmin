@@ -20,4 +20,6 @@ public interface PermissionInfoMapper {
     int updateByPrimaryKey(PermissionInfo record);
 
     List<PermissionInfo> selectPermissionInfoByUserId(Integer userId,Integer parentid);
+
+    List<String> selectURLPermissionByUserId(Integer id);
 }

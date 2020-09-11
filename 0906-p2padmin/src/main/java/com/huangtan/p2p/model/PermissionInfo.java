@@ -20,6 +20,16 @@ public class PermissionInfo {
 
     private Integer available;
 
+    private String icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     //权限一对多的关系，表示一个权限可能有多个子权限
     private List<PermissionInfo> permissionInfoList = new ArrayList<>();
 

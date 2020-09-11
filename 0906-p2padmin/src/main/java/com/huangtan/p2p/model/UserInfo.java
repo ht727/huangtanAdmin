@@ -1,8 +1,6 @@
 package com.huangtan.p2p.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class UserInfo {
     private Integer id;
@@ -20,6 +18,16 @@ public class UserInfo {
     private Integer staffid;
 
     private List<PermissionInfo> permissionInfoList = new ArrayList<>();
+
+    private Map<String,String> urlMap = new HashMap<>();
+
+    public Map<String, String> getUrlMap() {
+        return urlMap;
+    }
+
+    public void setUrlMap(Map<String, String> urlMap) {
+        this.urlMap = urlMap;
+    }
 
     public List<PermissionInfo> getPermissionInfoList() {
         return permissionInfoList;

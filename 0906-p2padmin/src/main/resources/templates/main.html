@@ -415,7 +415,7 @@
 
             <li class=""th:each="menu:${session.sessionuser.permissionInfoList}">
                 <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-desktop"></i>
+                    <i th:class="|menu-icon fa ${menu.icon}|"></i>
                     <span class="menu-text" th:text="${menu.name}">
 								UI &amp; Elements
 							</span>
@@ -430,7 +430,7 @@
                     <li class="" th:each="menu2:${menu.permissionInfoList}">
                         <a th:href="@{|${menu2.url}|}">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            [[${menu.name}]]
+                            [[${menu2.name}]]
                         </a>
 
                         <b class="arrow"></b>
