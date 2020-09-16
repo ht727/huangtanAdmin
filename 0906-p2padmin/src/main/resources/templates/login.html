@@ -84,7 +84,7 @@
 
 													<div class="clearfix">
 														<label class="inline">
-															<input type="checkbox" class="ace" />
+															<input type="checkbox" name="isOk" class="ace" />
 															<span class="lbl"> 记住我</span>
 														</label>
 
@@ -93,8 +93,12 @@
 															<span class="bigger-110">登录</span>
 														</button>
 													</div>
-													<span style="color : red" th:text="${message}"></span>
-
+													<div th:if="${noLogin == null or noLogin == ''}">
+														<span style="color : red" th:text="${message}"></span>
+													</div>
+													<div th:if="${noLogin != null}">
+														<span style="color : red" th:text="${noLogin}"></span>
+													</div>
 													<div class="space-4"></div>
 												</fieldset>
 											</form>
