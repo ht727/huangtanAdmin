@@ -24,7 +24,7 @@ public class URLInterceptor implements HandlerInterceptor {
         String servletPath = request.getServletPath();
 
         Map<String, String[]> parameterMap = request.getParameterMap();
-        //拼接请求字符串
+        //拼接请求字符串,根本就沒必要
         StringBuilder stringBuilder = new StringBuilder();
         if(parameterMap!=null && parameterMap.size() >0) {
             for (String key : parameterMap.keySet()) {
@@ -38,7 +38,7 @@ public class URLInterceptor implements HandlerInterceptor {
         //从用户中获取url集合
         Map<String, String> urlMap = userInfo.getUrlMap();
         //判断请求路径被包含
-        if(!urlMap.containsKey(servletPath) && !urlMap.containsKey(stringBuilder)){
+        if(!urlMap.containsKey(servletPath)){
             request.getRequestDispatcher("/noPermission").forward(request,response);
             return false;
         }

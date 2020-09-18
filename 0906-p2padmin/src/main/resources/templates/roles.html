@@ -493,7 +493,7 @@
 													</th>
 													<th>角色编号</th>
 													<th>角色名称</th>
-													<th class="hidden-480">角色状态</th>
+													<th class="hidden-480">是否可用</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -514,7 +514,8 @@
 														<a href="#" th:text="${role.name}">ace.com</a>
 													</td>
 													<td class="hidden-480">
-														<span class="label label-sm label-warning" th:text="${role.available}">Expiring</span>
+														<span class="label label-sm label-warning" th:if="${role.available == 1}" th:text="可用">Expiring</span>
+														<span class="label label-sm label-warning" th:if="${role.available != 1}" th:text="不可用">Expiring</span>
 													</td>
 
 													<td>
@@ -531,8 +532,8 @@
 																<i class="ace-icon fa fa-trash-o bigger-120"></i>
 															</button>
 
-															<button class="btn btn-xs btn-warning">
-																<i class="ace-icon fa fa-flag bigger-120"></i>
+															<button class="btn btn-xs btn-warning disPermsBut" th:attr="roleId=${role.id}">
+																<i class="ace-icon fa fa-flag bigger-120 ">分配权限</i>
 															</button>
 														</div>
 
@@ -688,10 +689,12 @@
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
+		<script th:src="@{|/assets/js/jquery-1.7.2.min.js|}"></script>
 		<script th:src="@{|/assets/js/bootstrap.min.js|}"></script>
 
 		<!-- page specific plugin scripts -->
 		<script th:src="@{|/assets/js/jquery.dataTables.min.js|}"></script>
+
 		<script th:src="@{|/assets/js/jquery.dataTables.bootstrap.min.js|}"></script>
 		<script th:src="@{|/assets/js/dataTables.buttons.min.js|}"></script>
 		<script th:src="@{|/assets/js/buttons.flash.min.js|}"></script>
@@ -706,4 +709,14 @@
 
 		<!-- inline scripts related to this page -->
 	</body>
+<script>
+	$(function () {
+		$(".disPermsBut").bind("click",function () {
+			//获取属性指定
+			var v_roleId = $(this).attr("roleId")
+			//同步请求
+			window.location.href="/admin/toDisPerms?roleId="+v_roleId;
+		})
+	})
+</script>
 </html>

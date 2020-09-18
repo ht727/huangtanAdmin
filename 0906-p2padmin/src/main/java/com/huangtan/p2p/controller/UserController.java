@@ -75,10 +75,15 @@ public class UserController {
     public String roles(Model model){
         //查询所有的角色信息
         List<RoleInfo> roleInfoList = roleInfoService.queryAllRoleInfo();
-        System.out.println(roleInfoList.size());
+
         //将结果保存到request中
         model.addAttribute("roleInfoList",roleInfoList);
         //请求转发
         return "roles";
+    }
+
+    @RequestMapping("/admin/toDisPerms")
+    public String toDisPerms(Integer roleId){
+        return "disPerms";
     }
 }
